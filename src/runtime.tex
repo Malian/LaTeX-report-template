@@ -1,0 +1,12 @@
+\def\sourcedirectory{src/}
+
+\def\distdirectory{dist/}
+
+\newcommand{\require}[1]{
+    \input{\sourcedirectory/#1}
+}
+
+\newcommand{\requiredist}[1]{
+    \input{\distdirectory/#1}
+}
+

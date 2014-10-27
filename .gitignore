@@ -1,0 +1,3 @@
+dist/*
+!dist/epstopdf_converted/.empty
+

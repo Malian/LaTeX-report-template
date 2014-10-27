@@ -1,0 +1,134 @@
+% ------------------------------------------------------------------------------
+% Define some colors
+% ------------------------------------------------------------------------------
+
+\definecolor{codeBlue}{rgb}{0,0,1}
+\definecolor{codeGreen}{rgb}{0,0.5,0}
+\definecolor{codeGrey}{rgb}{0.6,0.6,0.6}
+\definecolor{codeRed}{rgb}{0.8,0,0}
+\definecolor{webdarkblue}{rgb}{0,0,0.4}
+\definecolor{webgreen}{rgb}{0,0.3,0}
+\definecolor{webblue}{rgb}{0,0,0.8}
+\definecolor{orange}{rgb}{0.7,0.1,0.1}
+
+% ------------------------------------------------------------------------------
+% Source code
+% ------------------------------------------------------------------------------
+
+\lstset{
+	  title=\lstname,                   			                    % Show file title
+  	  captionpos=t,                   				                    % File title at Top (t) or bottom (b)
+  	  backgroundcolor=\color{white},
+	  flexiblecolumns=true,
+	  numbers=left,                									% Number at left or right
+	  stepnumber=5,					                               % Range bewteen to line that have number
+  	  numbersep=15pt,                  				            % Distance from text.
+	  basicstyle=\ttfamily\scriptsize,
+	  numberstyle=\ttfamily\tiny\color{codeGrey},
+	  keywordstyle=\ttfamily\textcolor{codeBlue},
+	  stringstyle=\ttfamily\textcolor{codeRed},
+	  commentstyle=\ttfamily\textcolor{codeGreen},
+	  showspaces=false,
+	  showtabs=false,
+	  breaklines=true,
+	  frame=trBL,                   					                % Frame around code ?
+	  framerule=1pt,
+	  tabsize=4,
+  	  morekeywords={*,...},              			                % Add some keywords
+	  deletekeywords={...},             				            % delete some keywords
+	  numberblanklines=true,						            % Number at blank line ?
+	  numberfirstline=true,							            % Show number at first line ?
+	  xleftmargin=17pt,
+	  xrightmargin=5pt,
+      inputencoding=utf8/latin1,
+      extendedchars=true
+}
+
+% ------------------------------------------------------------------------------
+% Various
+% ------------------------------------------------------------------------------
+\setlength\parindent{0pt}
+\renewcommand{\baselinestretch}{1.25}
+
+\addto\captionsfrench{\renewcommand{\refname}{Bibliographie}}
+\addto\captionsfrench{\renewcommand{\chaptername}{Chapitre}}
+\addto\captionsfrench{\renewcommand{\lstlistlistingname}{Liste des codes}}
+\addto\captionsfrench{\renewcommand{\lstlistingname}{Code}}
+
+\renewcommand{\appendixname}{Annexe}
+\renewcommand{\appendixtocname}{Annexes}
+\renewcommand{\appendixpagename}{Annexes}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{ - #1}}
+\renewcommand{\subsectionmark}[1]{\markright{ - \ #1}}
+
+\noappendicestocpagenum
+
+% Chapter title
+\titleformat{\chapter}[frame]
+  {\normalfont\Large\filcenter}
+  {\enskip\filright
+   \enskip \chaptername~\LARGE\textbf{\thechapter} \enskip}
+  {10pt}
+  {\Large\bfseries\filcenter}
+\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+
+% Header
+\lhead{}
+\chead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0pt}
+
+% Footer
+\lfoot{\leftmark \rightmark}
+\cfoot{}
+\rfoot{\thepage~/~\pageref{LastPage}}
+\renewcommand{\footrulewidth}{.2pt}
+
+% Chapter page
+\fancypagestyle{plain}{
+	\fancyhf{} % supprime tout
+	\fancyfoot[L]{}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage~/~\pageref{LastPage}}
+}
+
+\pgfplotstableset{
+    every head row/.style={
+    before row=\toprule,after row=\midrule},
+    every last row/.style={
+    after row=\bottomrule},
+    col sep = &,
+    row sep=\\,
+    string type
+}
+
+\makeatletter
+\renewcommand{\@chap@pppage}{%
+  \clear@ppage
+  \thispagestyle{empty}%
+  \if@twocolumn\onecolumn\@tempswatrue\else\@tempswafalse\fi
+  \null\vfil
+  \markboth{}{}%
+  {\centering
+   \interlinepenalty \@M
+   \normalfont
+   \Huge \bfseries \appendixpagename\par}%
+  \if@dotoc@pp
+    \addappheadtotoc
+  \fi
+  \vfil\newpage
+  \if@twoside
+    \if@openright
+      \null
+      \thispagestyle{plain}%
+      \newpage
+    \fi
+  \fi
+  \if@tempswa
+    \twocolumn
+  \fi
+}
+\makeatother
+
