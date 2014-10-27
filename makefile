@@ -10,16 +10,16 @@ tex:
 		-output-format pdf \
 		-interaction errorstopmode \
 		-halt-on-error \
-		-shell-escape cours$(FORMAT).tex;
+		-shell-escape report$(FORMAT).tex;
 
 bib: tex
-	@bibtex dist/cours$(FORMAT).aux;
+	@bibtex dist/report$(FORMAT).aux;
 
 open:
-	@open -g -F dist/cours$(FORMAT).pdf;
+	@open -g -F dist/report$(FORMAT).pdf;
 
 open-new:
-	@open -g -F -n dist/cours$(FORMAT).pdf;
+	@open -g -F -n dist/report$(FORMAT).pdf;
 
 clean:
 	@find dist -type f -not -name '.*' | xargs rm -f
